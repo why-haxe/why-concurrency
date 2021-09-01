@@ -1,14 +1,15 @@
 package why.concurrency.semaphore;
 
+using Lambda;
 using tink.CoreApi;
 
 class Data<T> extends Base<T> implements Semaphore<T> {
 	public final max:Int;
 	
-	final pool:Array<T>;
+	final pool:List<T>;
 
 	public function new(pool:Array<T>) {
-		this.pool = pool.copy();
+		this.pool = pool.list();
 		this.max = pool.length;
 	}
 	
@@ -20,6 +21,6 @@ class Data<T> extends Base<T> implements Semaphore<T> {
 	}
 	
 	function put(data:T) {
-		pool.push(data);
+		pool.add(data);
 	}
 }
